@@ -1,0 +1,113 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "Hello",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "How's it going?",
+        "Is anyone there?",
+        "Hey there!"
+      ],
+      "responses": [
+        "Hello! How can I assist you today?",
+        "Hey there! What brings you here?",
+        "Hi! How can I help you?",
+        "Good to see you! What can I do for you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "Catch you later",
+        "Take care",
+        "Have a great day"
+      ],
+      "responses": [
+        "Goodbye! Hope to see you again soon!",
+        "Take care! Have a fantastic day ahead!",
+        "See you next time! Stay safe!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thanks a lot!",
+        "I appreciate it",
+        "Many thanks"
+      ],
+      "responses": [
+        "You're very welcome! Glad I could help!",
+        "Anytime! If you need anything else, just ask.",
+        "Happy to assist! Let me know if you have more questions."
+      ]
+    },
+    {
+      "tag": "items",
+      "patterns": [
+        "What do you sell?",
+        "What products do you offer?",
+        "Can you tell me what items you have?",
+        "What kind of drinks do you have?"
+      ],
+      "responses": [
+        "We offer a variety of coffee and tea to suit your taste!",
+        "Our menu includes different blends of coffee and tea. What are you in the mood for?",
+        "We have freshly brewed coffee and a selection of fine teas. Would you like recommendations?"
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you accept credit cards?",
+        "Can I pay with Mastercard?",
+        "Do you take PayPal?",
+        "Is it cash only?",
+        "What payment methods do you support?"
+      ],
+      "responses": [
+        "We accept all major credit cards, including VISA, Mastercard, and PayPal.",
+        "You can pay using VISA, Mastercard, PayPal, or cash whichever is convenient for you!",
+        "Yes! We support multiple payment methods like credit/debit cards and PayPal."
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long does delivery take?",
+        "When will my order arrive?",
+        "What's the estimated shipping time?",
+        "How fast is your delivery service?"
+      ],
+      "responses": [
+        "Our standard delivery takes 2-4 business days, depending on your location.",
+        "You can expect your order to arrive within 2-4 days. Let us know if you need express delivery!",
+        "Shipping usually takes between 2 to 4 days, but we offer faster options if needed."
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Make me laugh!",
+        "Do you know any jokes?",
+        "Can you say something funny?"
+      ],
+      "responses": [
+        "Why don’t skeletons fight each other? Because they don’t have the guts!",
+        "I told my suitcase that there will be no vacations this year. Now I’m dealing with emotional baggage!",
+        "What do you call fake spaghetti? An impasta!"
+      ]
+    }
+  ]
+}

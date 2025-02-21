@@ -1,0 +1,90 @@
+# words = ["organize", "organizes", "organizing"]
+# stemmed_words = [stem(word) for word in words]
+# print(stemmed_words)
+
+##Converts to stem
+['organ', 'organ', 'organ']
+
+####apparently our datafile or input json
+{'intents': [{'tag': 'greeting', 'patterns': ['Hi', 'Hey', 'How are you', 'Is anyone there?', 'Hello', 'Good day'], 'responses': ['Hey :-)', 'Hello, thanks for visiting', 'Hi there, what can I do for you?', 'Hi there, how can I help?']}, {'tag': 'goodbye', 'patterns': ['Bye', 'See you later', 'Goodbye'], 'responses': ['See you later, thanks for visiting', 'Have a nice day', 'Bye! Come back again soon.']}, {'tag': 'thanks', 'patterns': ['Thanks', 'Thank you', "That's helpful", "Thank's a lot!"], 'responses': ['Happy to help!', 'Any time!', 'My pleasure']}, {'tag': 'items', 'patterns': ['Which items do you have?', 'What kinds of items are there?', 'What do you sell?'], 'responses': ['We sell coffee and tea', 'We have coffee and tea']}, {'tag': 'payments', 'patterns': ['Do you take credit cards?', 'Do you accept Mastercard?', 'Can I pay with Paypal?', 'Are you cash only?'], 'responses': ['We accept VISA, Mastercard and Paypal', 'We accept most major credit cards, and Paypal']}, {'tag': 'delivery', 'patterns': ['How long does delivery take?', 'How long does shipping take?', 'When do I get my delivery?'], 'responses': ['Delivery takes 2-4 days', 'Shipping takes 2-4 days']}, {'tag': 'funny', 'patterns': ['Tell me a joke!', 'Tell me something funny!', 'Do you know a joke?'], 'responses': ['Why did the hipster burn his mouth? He drank the coffee before it was cool.', 'What did the buffalo say when his son left for college? Bison.']}]}
+
+#####After training and comverting into tokens
+    """
+    sentence = ["hello", "how", "are", "you"]
+    words = ["hi", "hello", "I", "you", "bye", "thank", "cool"]
+    bag   = [ 0 ,   1 ,    0    , 1  ,    0  ,    0 ,     0   ]
+    """
+PS D:\web tech project\Take-home project Pratham Nayak\custom_chatbot> python train.py
+['organ', 'organ', 'organ']
+['Hi', 'Hey', 'How', 'are', 'you', 'Is', 'anyone', 'there', '?', 'Hello', 'Good', 'day', 'Bye', 'See', 'you', 'later', 'Goodbye', 'Thanks', 'Thank', 'you', 'That', "'s", 'helpful', 'Thank', "'s", 'a', 'lot', '!', 'Which', 'items', 'do', 'you', 'have', '?', 'What', 'kinds', 'of', 'items', 'are', 'there', '?', 'What', 'do', 'you', 'sell', '?', 'Do', 'you', 'take', 'credit', 'cards', '?', 'Do', 'you', 'accept', 'Mastercard', '?', 'Can', 'I', 'pay', 'with', 'Paypal', '?', 'Are', 'you', 'cash', 'only', '?', 'How', 'long', 'does', 'delivery', 'take', '?', 'How', 'long', 'does', 'shipping', 'take', '?', 'When', 'do', 'I', 'get', 'my', 'delivery', '?', 'Tell', 'me', 'a', 'joke', '!', 'Tell', 'me', 'something', 'funny', '!', 'Do', 'you', 'know', 'a', 'joke', '?']
+
+#### Which we apparently get
+['delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks']
+[0. 1. 0. 1. 0. 0. 0.]
+
+
+####Applying Neural networks from pytorch
+
+['delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks']
+54 54
+7  ##It tells about how many items 
+['delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks']
+
+
+The output of chatbot training process:
+
+1. Tags List: `['delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks']`
+   - This is the list of categories (or "intents") that your chatbot is being trained to recognize and classify user input into. 
+
+2. `54 54`:
+   - This could indicate the `input_size` and `output_size` of your neural network model. Both values being `54` likely means that:
+     - `input_size` is `54`, which is probably the length of the bag-of-words vector representing each input sentence.
+     - `output_size` is `7`, which aligns with the number of categories or intents your model needs to classify.
+
+3. `7`:
+   - This comment likely refers to the number of tags in your dataset. Here, `7` aligns with the number of unique intents in `tags`. This means the model's final layer outputs a probability distribution over these 7 classes.
+
+This information helps verify that the data and model structure are correctly set up for training and classification of chatbot responses. The tags are mapped to the correct number of output neurons (7), and the input size matches the processed feature vector length for each sentence.
+
+
+#####Output from the model of file train.py ####
+
+['delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks']
+epoch 100/1000, loss=1.3871
+epoch 200/1000, loss=0.1581
+epoch 300/1000, loss=0.2324
+epoch 400/1000, loss=0.0112
+epoch 500/1000, loss=0.0038
+epoch 600/1000, loss=0.0087
+epoch 700/1000, loss=0.0052
+epoch 800/1000, loss=0.0029
+epoch 900/1000, loss=0.0007
+epoch 1000/1000, loss=0.0006
+final loss, loss=0.0006
+
+The decreasing loss values across epochs indicate that your model is learning well and successfully minimizing the error over time. 
+
+Loss Decrease Over Time: The loss value drops consistently from the initial epoch (1.3871) down to a very small value (0.0006) by the final epoch. This is a good sign, as it suggests that the model is learning patterns from your data effectively.
+
+Low Final Loss: By the time you reach the last epoch, the final loss value is very close to zero (0.0006), which typically indicates that the model has achieved a high level of accuracy on the training data.
+
+Possibility of Overfitting: While a very low loss on training data indicates good learning, it also raises the possibility of overfitting. This means that while your model might perform well on the training data, it may not generalize as effectively on new, unseen data. To check for overfitting, you would need to test the model on a separate validation or test dataset.
+
+Overall Interpretation: Since the model achieves such a low loss, it’s likely able to handle the classifications for your chatbot’s tags ('delivery', 'funny', 'goodbye', 'greeting', 'items', 'payments', 'thanks') with high accuracy on the training data.
+
+
+###First output of my custom chatbot
+Let's chat! type 'quit' to exit
+You: Hi
+Sam: Hi there, how can I help?
+You: What do you sell?
+Sam: We have coffee and tea
+You: how long does it take
+Sam: Shipping takes 2-4 days
+You: con you help me ?
+Sam: Bye! Come back again soon.
+You: bye
+Sam: Have a nice day
+You: quit
+
+##AS our chatbot was running only in terminal now we will build a GUI
